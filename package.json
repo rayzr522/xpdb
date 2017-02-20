@@ -1,0 +1,12 @@
+{
+  "name": "xpdb",
+  "version": "1.0.0",
+  "description": "A simplified persistant data storage solution built on LevelDB",
+  "main": "lib/index.js",
+  "repository": "https://github.com/Rayzr522/xpdb",
+  "author": "Rayzr522",
+  "license": "MIT",
+  "dependencies": {
+    "level": "^1.6.0"
+  }
+}
