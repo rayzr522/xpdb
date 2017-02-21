@@ -1,9 +1,16 @@
 const XPDB = require('../lib');
 
-let db = new XPDB('./testDB');
+let db = new XPDB('./testDB-' + Date.now());
 
 function format(obj) {
     return JSON.stringify(obj, null, 4);
+}
+
+async function clear() {
+    var keys = await db.keys();
+    for (var key in keys) {
+        await db.delete(key);
+    }
 }
 
 async function main() {
@@ -28,8 +35,8 @@ async function main() {
         await checkType('bool-test-true', true);
         await checkType('bool-test-false', false);
 
-        await checkType('null-test', null);
         await checkType('undefined-test', undefined);
+        await checkType('null-in-object', { nullVar: null });
 
         await checkType('object-test', {
             'bool': true,
@@ -46,11 +53,6 @@ async function main() {
         console.log(format(await db.keys()));
         console.log(format(await db.values()));
         console.log(format(await db.entries()));
-
-        db.unwrap().createValueStream()
-            .on('data', value => {
-                console.log(value);
-            });
 
     } catch (err) {
         console.error(err);

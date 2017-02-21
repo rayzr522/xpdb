@@ -1,10 +1,11 @@
 {
   "name": "xpdb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simplified persistant data storage solution built on LevelDB",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --harmony ./test/index.js"
+    "test": "node --harmony ./test/index.js",
+    "clean": "rm -rf ./testDB-*"
   },
   "files": [
     "lib"
