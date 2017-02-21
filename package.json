@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simplified persistant data storage solution built on LevelDB",
   "main": "lib/index.js",
+  "scripts": {
+    "test": "node --harmony ./test/index.js"
+  },
   "files": [
     "lib"
   ],

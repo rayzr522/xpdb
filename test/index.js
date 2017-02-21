@@ -2,6 +2,10 @@ const XPDB = require('../lib');
 
 let db = new XPDB('./testDB');
 
+function format(obj) {
+    return JSON.stringify(obj, null, 4);
+}
+
 async function main() {
     try {
 
@@ -38,6 +42,15 @@ async function main() {
         });
 
         await checkType('object-test-empty', {});
+
+        console.log(format(await db.keys()));
+        console.log(format(await db.values()));
+        console.log(format(await db.entries()));
+
+        db.unwrap().createValueStream()
+            .on('data', value => {
+                console.log(value);
+            });
 
     } catch (err) {
         console.error(err);
