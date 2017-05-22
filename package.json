@@ -1,6 +1,6 @@
 {
   "name": "xpdb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simplified persistant data storage solution built on LevelDB",
   "main": "lib/index.js",
   "scripts": {
