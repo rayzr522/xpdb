@@ -1,21 +1,20 @@
 const XPDB = require('../lib');
+const rimraf = require('rimraf');
 
-let db = new XPDB('./testDB-' + Date.now());
+const dbName = './testDB-' + Date.now();
+const db = new XPDB(dbName);
 
-function format(obj) {
-    return JSON.stringify(obj, null, 4);
+const format = input => JSON.stringify(input, null, 4);
+
+const checkType = async (key, value) => {
+    console.log(`${key}: (${typeof value}) ${format(value)}`);
+    await db.put(key, value);
+    let newValue = await db.get(key);
+    console.log(`${key} [new]: (${typeof value}) ${format(newValue)}`);
 }
 
-async function clear() {
-    var keys = await db.keys();
-    for (var key in keys) {
-        await db.delete(key);
-    }
-}
-
-async function main() {
+const main = async () => {
     try {
-
         await db.put('name', 'Rayzr');
         console.log(await db.get('name'));
 
@@ -53,22 +52,16 @@ async function main() {
         console.log(format(await db.keys()));
         console.log(format(await db.values()));
         console.log(format(await db.entries()));
-
     } catch (err) {
         console.error(err);
     }
-}
 
-async function checkType(key, value) {
-    console.log(key + ': (' + typeof value + ') ' + JSON.stringify(value, null, 4));
-    await db.put(key, value);
-    var newVal = await db.get(key);
-    console.log(key + ' [new]: (' + typeof newVal + ') ' + JSON.stringify(newVal, null, 4));
-
-    // TODO: Why does this not work?
-    // if (value !== newVal) {
-    //     throw new Error('Test failed: ' + key);
-    // }
+    try {
+        db.close();
+        rimraf.sync(dbName);
+    } catch (err) {
+        console.error('Error removing test database:', err);
+    }
 }
 
 main();
