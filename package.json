@@ -1,10 +1,10 @@
 {
   "name": "xpdb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simplified persistant data storage solution built on LevelDB",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --harmony ./test/index.js",
+    "test": "node ./test/index.js",
     "clean": "rm -rf ./testDB-*"
   },
   "files": [
@@ -14,9 +14,9 @@
   "author": "Rayzr522",
   "license": "MIT",
   "dependencies": {
-    "level": "^4.0.0"
+    "level": "^5.0.1"
   },
   "devDependencies": {
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   }
 }
