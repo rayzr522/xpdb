@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "node ./test/index.js",
-    "clean": "rm -rf ./testDB-*"
+    "clean": "rimraf ./testDB-*"
   },
   "files": [
     "lib"
@@ -14,9 +14,9 @@
   "author": "Rayzr522",
   "license": "MIT",
   "dependencies": {
-    "level": "^5.0.1"
+    "level": "^6.0.1"
   },
   "devDependencies": {
-    "rimraf": "^2.6.3"
+    "rimraf": "^3.0.2"
   }
 }
